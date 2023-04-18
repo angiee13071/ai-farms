@@ -3,5 +3,143 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "ai-farms": {
+      "projectType": "library",
+      "root": "projects/ai-farms",
+      "sourceRoot": "projects/ai-farms/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ai-farms/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ai-farms/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ai-farms/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ai-farms/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "ai-farms-sandbox": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ai-farms-sandbox",
+      "sourceRoot": "projects/ai-farms-sandbox/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ai-farms-sandbox",
+            "index": "projects/ai-farms-sandbox/src/index.html",
+            "main": "projects/ai-farms-sandbox/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/ai-farms-sandbox/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/ai-farms-sandbox/src/favicon.ico",
+              "projects/ai-farms-sandbox/src/assets"
+            ],
+            "styles": [
+              "projects/ai-farms-sandbox/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "ai-farms-sandbox:build:production"
+            },
+            "development": {
+              "browserTarget": "ai-farms-sandbox:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ai-farms-sandbox:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/ai-farms-sandbox/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/ai-farms-sandbox/src/favicon.ico",
+              "projects/ai-farms-sandbox/src/assets"
+            ],
+            "styles": [
+              "projects/ai-farms-sandbox/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "cli": {
+    "analytics": "c7fea17c-493e-4e06-8432-b92e0fa4d8c8"
   }
 }

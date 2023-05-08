@@ -1,0 +1,124 @@
+.aie-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+
+    & .aie-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 100%;
+        width: 50%;
+        background-color: #ffffff;
+
+        & .image {
+            width: 15rem;
+        }
+
+        & .logo {
+            position: absolute;
+            bottom: 1rem;
+
+        }
+    }
+
+    & .aie-right {
+        width: 51%;
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+
+    }
+
+
+}
+
+.title-container {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 50px;
+    text-align: center;
+    color: #007B55;
+    width: 26rem;
+}
+
+// .subtitle {
+//     font-family: 'Quicksand';
+//     font-style: normal;
+//     font-weight: 700;
+//     font-size: 2.5rem;
+//     line-height: 35px;
+//     color: #1AA482;
+//     text-align: center;
+//     width: 10rem;
+
+// }
+
+.ai-button {
+    width: 23rem;
+    height: 3.5rem;
+}
+
+.back {
+    width: 100%;
+}
+
+.ai-button-back-web {
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: auto;
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: start;
+    color: #623F83;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding-left: 12rem;
+    position: absolute;
+    bottom: 8rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+    .aie-container {
+        background-image: none;
+
+        & .aie-right {
+            width: 100%;
+            background: none;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            align-content: flex-start;
+        }
+
+        &.aie-card {
+            background: rgb(255, 255, 255);
+            box-shadow: none;
+
+            button {
+                width: 10%;
+            }
+        }
+
+
+    }
+}

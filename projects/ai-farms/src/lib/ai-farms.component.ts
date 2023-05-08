@@ -2,11 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'lib-ai-farms',
-  template: `
-    <p>
-      ai-farms works!
-    </p>
-  `,
+  templateUrl: './ai-farms.component.html',
   styles: [
   ]
 })

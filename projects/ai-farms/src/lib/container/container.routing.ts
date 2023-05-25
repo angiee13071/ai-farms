@@ -7,11 +7,11 @@ import { ProductComponent } from '../container/views/product/product.component';
 import { SummaryComponent } from '../container/views/summary/summary.component';
 
 const routes: Routes = [
-  { path: '', component: BeginComponent },
-  { path: 'begin', component: BeginComponent },
-  { path: 'finish', component: FinishComponent },
-  { path: 'product', component: ProductComponent },
-  { path: 'summary', component: SummaryComponent }
+  { path: '', component: BeginComponent, title: 'AgrodatAi - begin' },
+  { path: 'begin', component: BeginComponent, title: 'AgrodatAi - begin' },
+  { path: 'finish', component: FinishComponent, title: 'AgrodatAi - finish' },
+  { path: 'product', component: ProductComponent, title: 'AgrodatAi - product' },
+  { path: 'summary', component: SummaryComponent, title: 'AgrodatAi - summary' }
 ];
 
 @NgModule({

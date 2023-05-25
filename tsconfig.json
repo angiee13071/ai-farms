@@ -5,7 +5,10 @@
     "paths": {
       "ai-farms": [
         "dist/ai-farms"
-      ]
+      ],
+      "typeRoots": [
+        "node_modules/@types"
+      ],
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",

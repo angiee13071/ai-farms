@@ -2,6 +2,7 @@ import { AfterViewInit, Component, EventEmitter, Inject, OnInit, Output } from '
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject, of, takeUntil } from 'rxjs';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-container',
@@ -10,12 +11,17 @@ import { Subject, of, takeUntil } from 'rxjs';
 })
 export class ContainerComponent implements OnInit, AfterViewInit {
   public src: string = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/Tulio-manos-corazon.svg';
-  public title: boolean = false;
-  public buttons: boolean = false;
-  public box: boolean = false;
-  public background: boolean = false;
-  public boxSummary: boolean = false;
+  //buttons
+  public add_Farms: boolean = false;
+  //Views
+  public begin: boolean = false;
+  public product: boolean = false;
+  public summary: boolean = false;
+  public finish: boolean = false;
   public isLoading = true;
+  //of begin:
+  public viewBegin: boolean = false;
+
   private $skip = new Subject<void>();
   images = [
     {
@@ -50,12 +56,14 @@ export class ContainerComponent implements OnInit, AfterViewInit {
   miJSON: any = {}
   constructor(
     @Inject('commonService') public _common: any,
-    private _router: Router,
+    private _router: Router, public _sharedService: SharedService,
   ) {
     window.addEventListener("load", (event) => {
       this.isLoading = false;
     });
-
+    if (this.begin = true) {
+      this.viewBegin = true;
+    }
 
   }
 
@@ -69,21 +77,23 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     setTimeout(() => this.isLoading = false, 1000)
   }
 
-  add() {
-
+  maps() {
+    this._sharedService.changeMaps();
+    console.log(this._sharedService.typeLocation)
+  }
+  forms() {
+    this._sharedService.changeForms();
+    console.log(this._sharedService.typeLocation)
   }
   private alterImage(path: string) {
     const tmp = this.imageUrlsWeb
       .filter((url: any) => url.paths.includes(`${path}`))
       .shift();
     if (tmp) this.src = tmp.url;
-    path.includes(`/`) ? (this.title = true) : (this.title = false);
-    path.includes('/') ? (this.buttons = true) : (this.buttons = false);
-    path.includes(`/begin`) ? (this.title = true) : (this.title = false);
-    path.includes('/begin') ? (this.buttons = true) : (this.buttons = false);
-    path.includes('/product') ? (this.box = true) : (this.box = false);
-    path.includes('/product') ? (this.background = true) : (this.background = false);
-    path.includes('/summary') ? (this.boxSummary = true) : (this.boxSummary = false);
+    path.includes(`/`) ? (this.begin = true) : (this.begin = false);
+    path.includes('/begin') ? (this.begin = true) : (this.begin = false);
+    path.includes('/product') ? (this.product = true) : (this.product = false);
+    path.includes('/summary') ? (this.summary = true) : (this.summary = false);
   }
 
 }

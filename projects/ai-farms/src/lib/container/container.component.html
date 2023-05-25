@@ -4,47 +4,42 @@
       <img *aiskeleton="isLoading; height: '202px'; className: 'bg-gray-1'; animation:'progress'" loading="lazy"
         [src]="images[0].src" [alt]="images[0].alt">
     </div>
-    <div *ngIf="title">
-      <div class="title-container"
-        *aiskeleton="isLoading; height: '60px'; className: 'bg-gray-1'; animation:'progress'">
+    <div *ngIf="viewBegin">
+      <div class="title-container">
         ¡Hola @Caro, AgrodatAi te da la bienvenida!
       </div>
     </div>
-    <img class="image" [src]="src" loading="lazy"
-      *aiskeleton="isLoading; height: '400px'; width: '400px'; className: 'bg-gray-1'" />
-    <div *ngIf="buttons">
-      <div *aiskeleton="isLoading; height: '61px'; className: 'bg-gray-1'; animation:'progress'">
-        <button class="ai-button color-white bg-green-2"
-          *aiskeleton="isLoading; height: '43px'; className:'ai-button color-white bg-green-1';animation:'pulse'"
-          (click)="add()" (touchstart)="add()"> <a class="text-login"> Agrega tus fincas</a>
-        </button>
-      </div>
-      <div class="location">
+    <img class="image" [src]="src" loading="lazy" />
+    <div>
+
+      <!-- *aiskeleton="isLoading; height: '61px'; className: 'bg-gray-1'; animation:'progress'"> -->
+      <button class="ai-button-l bg-green-2" (click)="maps()">
+        <a class="text-login"> Agrega tus fincas</a>
+      </button>
+
+      <div class="location" *ngIf="viewBegin">
         <div>
-          <button>
-            boton
-          </button>
-        </div>
-        <div class="subtitle">
-          Tomar mí
-          ubicación
+          <button class="button-location" (click)="forms()"></button>
         </div>
 
+        <div class="text">
+          Tomar mí ubicación
+        </div>
       </div>
 
     </div>
 
-    <div class="back" *ngIf="_common.device === 'web'">
+    <!-- <div class="back" *ngIf="_common.device === 'web'">
       <button class="ai-button-back-web"
         *aiskeleton="isLoading; height: '43px'; className: 'ai-button';animation:'pulse'" [routerLink]="['/']">&larr;
         Atrás</button>
-    </div>
-    <div class="logo" *aiskeleton="isLoading; height: '62px'; className: 'bg-gray-1'; animation:'progress'"
-      style="margin-top: 20px;">
+    </div> -->
+    <div class="logo">
       <img loading="lazy" [src]="images[1].src" [alt]="images[1].alt" />
     </div>
   </div>
   <div class="aie-right">
     <router-outlet></router-outlet>
+
   </div>
 </div>

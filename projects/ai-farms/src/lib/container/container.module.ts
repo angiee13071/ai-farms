@@ -11,6 +11,7 @@ import { SummaryComponent } from './views/summary/summary.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import firebaseConfig from '../firebaseConfig';
 import { AiFormsModule } from '@agrodatai/forms';
+import { MapService } from '../services/map.service'
 // Translations
 import { AiSkeletonDirective, AiTranslatePipe } from '@agrodatai/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -33,6 +34,7 @@ import { AiTranslateService } from '@agrodatai/core';
 
   ],
   providers: [
+    MapService
   ]
 })
 export class ContainerModule { }

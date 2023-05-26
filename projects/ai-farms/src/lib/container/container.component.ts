@@ -79,11 +79,9 @@ export class ContainerComponent implements OnInit, AfterViewInit {
 
   maps() {
     this._sharedService.changeMaps();
-    console.log(this._sharedService.typeLocation)
   }
   forms() {
     this._sharedService.changeForms();
-    console.log(this._sharedService.typeLocation)
   }
   private alterImage(path: string) {
     const tmp = this.imageUrlsWeb

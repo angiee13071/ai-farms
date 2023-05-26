@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'begin', component: BeginComponent, title: 'AgrodatAi - begin' },
   { path: 'finish', component: FinishComponent, title: 'AgrodatAi - finish' },
   { path: 'product', component: ProductComponent, title: 'AgrodatAi - product' },
-  { path: 'summary', component: SummaryComponent, title: 'AgrodatAi - summary' }
+  { path: 'summary', component: SummaryComponent, title: 'AgrodatAi - summary' },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

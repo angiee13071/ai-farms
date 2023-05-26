@@ -13,9 +13,15 @@
     justify-content: center;
 }
 
-#map {
-    height: 25rem;
+#map-none {
+    height: 60rem;
     width: 40rem;
     border-radius: 40px;
 
+}
+
+#map-maps {
+    height: 25rem;
+    width: 40rem;
+    border-radius: 40px;
 }

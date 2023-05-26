@@ -1,12 +1,13 @@
 <div class="aie-card">
   <div *ngIf="_sharedService.typeLocation==='none'">
-    <div id="map"></div>
+    <div id="map-none"></div>
+    Mapa por defecto
   </div>
   <div *ngIf="_sharedService.typeLocation==='maps'">
-    <div id="map"></div>
-    <div class="forms"> formulario</div>
+    <div id="map-maps"></div>
+    <div class="forms">Mapa-formulario</div>
   </div>
   <div *ngIf="_sharedService.typeLocation==='forms'">
-    <div class="forms"> formulario</div>
+    <div class="forms">formulario</div>
   </div>
 </div>

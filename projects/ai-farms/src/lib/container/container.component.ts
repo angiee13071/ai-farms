@@ -58,9 +58,9 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     @Inject('commonService') public _common: any,
     private _router: Router, public _sharedService: SharedService,
   ) {
-    window.addEventListener("load", (event) => {
-      this.isLoading = false;
-    });
+    // window.addEventListener("load", (event) => {
+    //   this.isLoading = false;
+    // });
     if (this.begin = true) {
       this.viewBegin = true;
     }

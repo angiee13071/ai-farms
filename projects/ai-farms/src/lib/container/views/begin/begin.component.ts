@@ -12,19 +12,19 @@ export class BeginComponent implements OnInit {
   constructor(public _sharedService: SharedService, public _map: MapService) {
 
   }
-
   ngOnInit() {
-    this._map.addMap(4.60971, -74.08175);
-    // this._sharedService.typeLocationChange.subscribe(() => {
-    //   console.log(this._sharedService.typeLocation);
-    //   if (this._sharedService.typeLocation === 'none' || this._sharedService.typeLocation === 'maps') {
-    //     this._map.addMap(4.60971, -74.08175);
+    setTimeout(() => {
+      this._map.addMap(4.60971, -74.08175, 'map-none');
+    });
 
-    //   }
-    // });
-
-
-
+    this._sharedService.typeLocationChange.subscribe(() => {
+      if (this._sharedService.typeLocation === 'maps') {
+        setTimeout(() => {
+          this._map.addMap(4.60971, -74.08175, 'map-maps');
+          console.log("se cargó el document");
+        });
+      }
+    });
   }
 
 

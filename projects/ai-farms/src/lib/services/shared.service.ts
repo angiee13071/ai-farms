@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SharedService {
-  public typeLocation: string = 'maps';
+  public typeLocation: string = 'none';
   private formData: string = "";
   public access_token: string = '';
   public smsdata: boolean = false;

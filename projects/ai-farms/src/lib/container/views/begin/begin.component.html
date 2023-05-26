@@ -1,12 +1,12 @@
-<p>
-  begin works!
-</p>
-
-<div *ngIf="_sharedService.typeLocation==='maps'"> maps
-  <google-map height="500px" width="900px"></google-map>
-
-
-  <div>Latitude: {{display?.lat}}</div>
-  <div>Longitude: {{display?.lng}}</div>
+<div class="aie-card">
+  <div *ngIf="_sharedService.typeLocation==='none'">
+    <div id="map"></div>
+  </div>
+  <div *ngIf="_sharedService.typeLocation==='maps'">
+    <div id="map"></div>
+    <div class="forms"> formulario</div>
+  </div>
+  <div *ngIf="_sharedService.typeLocation==='forms'">
+    <div class="forms"> formulario</div>
+  </div>
 </div>
-<div *ngIf="_sharedService.typeLocation==='forms'"> forms</div>

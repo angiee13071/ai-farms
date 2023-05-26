@@ -13,13 +13,13 @@
     <div>
 
       <!-- *aiskeleton="isLoading; height: '61px'; className: 'bg-gray-1'; animation:'progress'"> -->
-      <button class="ai-button-l bg-green-2" (click)="maps()">
+      <button class="ai-button-l bg-green-2" (click)="forms()">
         <a class="text-login"> Agrega tus fincas</a>
       </button>
 
       <div class="location" *ngIf="viewBegin">
         <div>
-          <button class="button-location" (click)="forms()"></button>
+          <button class="button-location" (click)="maps()"></button>
         </div>
 
         <div class="text">
@@ -38,7 +38,7 @@
       <img loading="lazy" [src]="images[1].src" [alt]="images[1].alt" />
     </div>
   </div>
-  <div class="aie-right">
+  <div [ngStyle]="{'background-color': begin ? 'rgba(91, 46, 122, 0.90)' : 'rgb(255, 255, 255)'}" class="aie-right">
     <router-outlet></router-outlet>
 
   </div>

@@ -11,7 +11,6 @@ import { SummaryComponent } from './views/summary/summary.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import firebaseConfig from '../firebaseConfig';
 import { AiFormsModule } from '@agrodatai/forms';
-import { GoogleMapsModule } from '@angular/google-maps';
 // Translations
 import { AiSkeletonDirective, AiTranslatePipe } from '@agrodatai/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -23,7 +22,7 @@ import { AiTranslateService } from '@agrodatai/core';
     ReactiveFormsModule,
     HttpClientModule,
     AiFormsModule,
-    GoogleMapsModule
+
   ],
   declarations: [
     ContainerComponent,

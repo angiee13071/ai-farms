@@ -9,6 +9,9 @@
       "typeRoots": [
         "node_modules/@types"
       ],
+      "skipLibCheck": [
+        "true"
+      ]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",

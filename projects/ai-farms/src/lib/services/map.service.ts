@@ -19,7 +19,7 @@ export class MapService {
         const map = new google.maps.Map(mapElement, {
             center: { lat: latitude, lng: longitude },
             // zoom: 15,
-            zoom: 11,
+            zoom: 10,
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
@@ -57,7 +57,7 @@ export class MapService {
             position: { lat: 4.648625, lng: -74.062404 },
             map: map, title: 'Tú ubicación', draggable: true
         });
-
+        marker.setAnimation(google.maps.Animation.BOUNCE);
         map.addListener('click', (event: { latLng: any; }) => {
             const clickedLocation = event.latLng;
             marker.setPosition(clickedLocation);

@@ -11,9 +11,10 @@
   },
   "private": true,
   "dependencies": {
+    "@agrodatai/alerts": "https://storage.googleapis.com/agrodata-ai-dev.appspot.com/repositorio/agrodatai-alerts/agrodatai-alerts-0.0.2.tgz",
     "@agrodatai/core": "https://storage.googleapis.com/agrodata-ai-dev.appspot.com/repositorio/agrodatai-core/agrodatai-core-0.0.19.tgz",
     "@agrodatai/entry": "file:dist/ai-entry",
-    "@agrodatai/forms": "https://storage.googleapis.com/agrodata-ai-dev.appspot.com/repositorio/agrodatai-forms/agrodatai-forms-0.0.6.tgz",
+    "@agrodatai/forms": "https://storage.googleapis.com/agrodata-ai-dev.appspot.com/repositorio/agrodatai-forms/agrodatai-forms-0.0.10.tgz",
     "@angular/animations": "^15.1.0",
     "@angular/common": "^15.1.0",
     "@angular/compiler": "^15.1.0",

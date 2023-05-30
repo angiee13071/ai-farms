@@ -1,45 +1,37 @@
 <div class="aie-container">
-  <div class="aie-left" *ngIf="_common.device === 'web'">
-    <div *ngIf="_common.device === 'mobile'" class="tulio-mobile">
-      <img *aiskeleton="isLoading; height: '202px'; className: 'bg-gray-1'; animation:'progress'" loading="lazy"
-        [src]="images[0].src" [alt]="images[0].alt">
-    </div>
-    <div *ngIf="viewBegin">
-      <div class="title-container">
-        ¡Hola @Caro, AgrodatAi te da la bienvenida!
-      </div>
+  <div class="aie-left" *ngIf="_common.device === 'web'"
+    [ngStyle]="{   'background-image': (_common.device === 'web'&& product) ? 'url(' + backgroundProducts + ')' : ''}"
+    style=" background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div *ngIf="begin">
+      <div class="title-container">¡Hola @Caro, AgrodatAi te da la bienvenida!</div>
     </div>
     <img class="image" [src]="src" loading="lazy" />
-    <div>
-
-      <!-- *aiskeleton="isLoading; height: '61px'; className: 'bg-gray-1'; animation:'progress'"> -->
-      <button class="ai-button-l bg-green-2" (click)="forms()">
-        <a class="text-login"> Agrega tus fincas</a>
-      </button>
-
-      <div class="location" *ngIf="viewBegin">
-        <div>
-          <button class="button-location" (click)="maps()"></button>
-        </div>
-
-        <div class="text">
-          Tomar mí ubicación
+    <div *ngIf="begin">
+      <div> <button class="ai-button-l bg-green-2" (click)="forms()">
+          <a class="text-login"> Agrega tus fincas</a></button>
+        <div class="location">
+          <div> <button class="button-location" (click)="maps()"></button></div>
+          <div class="text">Tomar mí ubicación</div>
         </div>
       </div>
-
     </div>
-
-    <!-- <div class="back" *ngIf="_common.device === 'web'">
-      <button class="ai-button-back-web"
-        *aiskeleton="isLoading; height: '43px'; className: 'ai-button';animation:'pulse'" [routerLink]="['/']">&larr;
-        Atrás</button>
-    </div> -->
-    <div class="logo">
-      <img loading="lazy" [src]="images[1].src" [alt]="images[1].alt" />
+    <div *ngIf="product">
+      <div class="card">
+        <p class="text-product">Agrega los productos en tu finca</p>
+      </div>
+      <div class="center"> <button class="button-add" (click)="maps()"></button></div>
     </div>
+    <div class="back" *ngIf="product">
+      <button class="ai-button-back-web" [routerLink]="['/']">&larr; Atrás</button>
+    </div>
+    <div class="logo"><img loading="lazy" [src]="images[1].src" [alt]="images[1].alt" /></div>
   </div>
-  <div [ngStyle]="{'background-color': begin ? 'rgba(91, 46, 122, 0.90)' : 'rgb(255, 255, 255)'}" class="aie-right">
+  <div [ngStyle]="{
+    'background-color': (_common.device === 'web' && begin) ? 'rgba(91, 46, 122, 0.90)' : 'rgb(255, 255, 255)',
+    'background-image': (_common.device === 'mobile' && begin && !product) ? 'url(' + backgroundMaps + ')' : (_common.device === 'mobile' && product) ? '' : ''
+  }" class="aie-right" style=" background-size: cover; background-position: center; background-repeat: no-repeat;">
     <router-outlet></router-outlet>
-
   </div>
+
+
 </div>

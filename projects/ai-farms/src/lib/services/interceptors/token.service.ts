@@ -4,8 +4,7 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent } from '@angular/c
 import { Observable, catchError, throwError } from 'rxjs';
 import { UserService } from '../user.service';
 import { CredentialsService } from '../credentials.service';
-import { environment } from '../../../environments/environment';
-import { AiAlert } from '@agrodatai/alerts';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +12,9 @@ import { AiAlert } from '@agrodatai/alerts';
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(
+    private _utils: UtilsService,
     private _user: UserService,
-    private _credentials: CredentialsService,
-    public _alerts: AiAlert,
+    private _credentials: CredentialsService
   ) {
 
   }
@@ -23,14 +22,10 @@ export class TokenInterceptor implements HttpInterceptor {
     let endpoint: any = request.headers.get('AgrodatAi-Token');
 
     let token: any;
-    if (endpoint == 'user') {
+    if (endpoint == 'user')
       token = this._user.token?.access_token;
-      console.log(token);
-    }
-    else if (endpoint == 'page') {
+    else if (endpoint == 'page')
       token = this._credentials.platformAccessToken;
-      console.log(token);
-    }
 
     if (request.url != `${environment.BACKEND_URL}auth/token/`) {
       let headers = request.headers.delete('AgrodatAi-Token');
@@ -40,37 +35,10 @@ export class TokenInterceptor implements HttpInterceptor {
       return next.handle(modifiedRequest).pipe(
         catchError((error) => {
           if (error.status === 401) {
-            this._alerts.readyAlert({
-              type: 'error',
-              image: 'explode_head',
-              title: 'Error',
-              text: 'Token inválido o expirado',
-              timer: 3000, showConfirmButton: false
-            })
-            console.error(error);
             return this.handleUnauthorizedError();
-          }
-          // else if (error.status === 500 || error.status === 429) {
-          //   this._alerts.readyAlert({
-          //     type: 'error',
-          //     image: 'explode_head',
-          //     title: 'Error',
-          //     text: 'Ha ocurrido un error, por favor inténtelo de nuevo más tarde',
-          //     timer: 3000, showConfirmButton: false
-          //   })
-
-          // } 
-          else {
-            this._alerts.readyAlert({
-              type: 'error',
-              image: 'explode_head',
-              title: 'Error',
-              text: 'Ha ocurrido un error, por favor inténtelo de nuevo más tarde',
-              timer: 3000, showConfirmButton: false
-            })
+          } else {
             return throwError(error);
           }
-
         })
       )
     } else {

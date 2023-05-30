@@ -11,11 +11,11 @@ export class FormsService {
 
 
   public locationForm: FormGroup;
+  public lookForm: FormGroup;
 
   constructor(
     private fb: FormBuilder
   ) {
-
 
     this.locationForm = this.fb.group({
       location: ['', [Validators.required]],
@@ -25,7 +25,9 @@ export class FormsService {
       property: [''],
     });
 
-
+    this.lookForm = this.fb.group({
+      product: ['', [Validators.required, Validators.pattern(patterns.only_letters)]]
+    })
 
   }
 

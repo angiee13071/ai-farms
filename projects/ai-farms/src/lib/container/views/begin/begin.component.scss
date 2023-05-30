@@ -2,6 +2,74 @@
     text-decoration: none;
 }
 
+.container {
+    // background-color: rgba(255, 255, 255, 0.47);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // background-image: url('https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/backgroudMaps.png');
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.tulio {
+    height: 9.9rem;
+    width: 12.5rem;
+}
+
+.title-container {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 50px;
+    text-align: center;
+    color: #007B55;
+    width: 22rem;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.text {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.7rem;
+    line-height: 50px;
+    text-align: center;
+    color: #1AA482;
+    width: 10rem;
+    line-height: 1.3;
+}
+
+.ai-button-l {
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.location {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-location {
+    width: 6.1rem;
+    height: 6.1rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    background-image: url('https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/Button-location.svg');
+}
+
 .aie-card {
     background: rgba(255, 255, 255, 0.76);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -36,9 +104,6 @@
 
 }
 
-button {
-    width: 100%;
-}
 
 #map-none {
     height: 45rem;
@@ -105,4 +170,18 @@ button {
 
 ::-webkit-scrollbar-corner {
     background: transparent;
+}
+
+@media (max-width: 768px) {
+
+    .aie-card,
+    .aie-card-map {
+        width: 100%;
+    }
+
+    .ai-button-m {
+        width: 18rem;
+    }
+
+    #map-maps {}
 }

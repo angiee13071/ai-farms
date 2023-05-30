@@ -11,7 +11,18 @@ import { AiNgSelect } from '@agrodatai/forms';
 })
 export class BeginComponent implements OnInit {
   public size: 's' | 'm' | 'l' = 's';
-  public location: any[] = [{ controlname: 'location', type: 'text', icon: 'farmer', label: 'Ubicación Finca / Predio ', placeholder: 'Ej: Vereda El Rosal' }]
+  public backgroundProducts = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/backgroundProducts.png'
+  images = [
+    {
+      src: 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/Tulio-Asomado.svg',
+      alt: 'Imagen de Tulio'
+    },
+    {
+      src: 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Login-Registro/Material-login-registro-web/Logo%20AgrodatAi.svg',
+      alt: 'Imagen del logo de AgrodatAi'
+    }
+  ];
+  public location: any[] = [{ controlname: 'location', type: 'text', icon: 'Map-mark', label: 'Ubicación Finca / Predio ', placeholder: 'Ej: Vereda El Rosal' }]
   public name: any[] = [{ controlname: 'name', type: 'text', icon: 'farm', label: 'Nombre de la finca (Opcional)', placeholder: 'Ej: Mi terruño' }]
   public area: any[] = [{ controlname: 'area', type: 'number', label: 'Área', placeholder: 'Ej: 7', radio: "10px 0px 0px 10px" }]
   public unit: AiNgSelect = {
@@ -38,6 +49,7 @@ export class BeginComponent implements OnInit {
 
 
   constructor(
+    @Inject('commonService') public _common: any,
     @Inject('UserService') public _user: any,
     public _sharedService: SharedService,
     public _map: MapService,
@@ -49,7 +61,9 @@ export class BeginComponent implements OnInit {
     setTimeout(() => {
       this._map.addMap(4.60971, -74.08175, 'map-none');
     });
-
+    this._user.getLocation();
+    this._user.getUserFirebase();
+    console.log("datos del usuario:" + this._user)
     this._sharedService.typeLocationChange.subscribe(() => {
       if (this._sharedService.typeLocation === 'maps') {
         setTimeout(() => {
@@ -61,7 +75,12 @@ export class BeginComponent implements OnInit {
     });
   }
 
-
+  maps() {
+    this._sharedService.changeMaps();
+  }
+  forms() {
+    this._sharedService.changeForms();
+  }
 
 }
 

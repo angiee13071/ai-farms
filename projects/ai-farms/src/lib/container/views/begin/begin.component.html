@@ -1,14 +1,22 @@
 <div *ngIf="_sharedService.typeLocation==='none'">
-  <div id="map-none"></div>
+  <div id="map-none" *ngIf="_common.device === 'web'"></div>
+  <div class="container" *ngIf="_common.device === 'mobile'">
+    <div class="title-container">¡Hola @Caro, AgrodatAi te da la bienvenida!</div>
+    <div> <img class="tulio" [src]="images[0].src" [alt]="images[0].alt" alt="Don Tulio"></div>
+    <div> <button class="ai-button-m bg-green-2" (click)="forms()">
+        <a class="text-login"> Agrega tus fincas</a></button>
+      <div class="buttons">
+        <div> <button class="button-location" (click)="maps()"></button></div>
+        <div class="text">Tomar mí ubicación</div>
+      </div>
+    </div>
+  </div>
 </div>
-
 <div *ngIf="_sharedService.typeLocation==='maps'">
-
   <div class="aie-card-map" *ngIf="_sharedService.typeLocation==='maps'">
     <div id="map-maps"></div>
     <div class="forms">
       <form [formGroup]="_forms.locationForm">
-        <!-- <ai-form-input [size]="size" [form]="_forms.locationForm" [settings]="location[0]"></ai-form-input> -->
         <ai-form-input [size]="size" [form]="_forms.locationForm" [settings]="name[0]"></ai-form-input>
         <div class="area">
           <ai-form-input [size]="size" class="half" [form]="_forms.locationForm" [settings]="area[0]"></ai-form-input>
@@ -20,7 +28,9 @@
       </form>
     </div>
   </div>
+
 </div>
+
 <div class="aie-card" *ngIf="_sharedService.typeLocation==='forms'">
   <div>
     <div class="forms">
@@ -33,7 +43,6 @@
         </div>
         <ai-form-select [form]="_forms.locationForm" [settings]="property"></ai-form-select>
         <button class="ai-button-l bg-green-2 mgt-2"><a>Agregar</a></button>
-
       </form>
     </div>
   </div>

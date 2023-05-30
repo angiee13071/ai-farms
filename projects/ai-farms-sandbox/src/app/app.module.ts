@@ -10,6 +10,7 @@ import { CredentialsService } from './common/services/credentials.service';
 import { TokenInterceptor } from './common/services/interceptors/token.service';
 import { environment } from './environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
+import { NgxIndexedDBModule } from 'ngx-indexed-db';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-
+    NgxIndexedDBModule.forRoot(environment.indexedDBCOnfig),
   ],
   providers: [
     { provide: 'commonService', useExisting: CommonService },

@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "deploy:dev": "gcloud app deploy ./dist/develop.yaml --project=agrodata-ai-dev --version=ai-entry --no-promote",
     "test": "ng test",
+    "pack": "ng build ai-entry && cd dist/ai-entry/ && npm pack && cd ../../",
     "env": "cd .. && cd ./Scripts && call activate.bat && cd ../farms-workspace && cmd"
   },
   "private": true,
@@ -28,6 +30,7 @@
     "@capacitor/preferences": "^4.0.2",
     "@ng-select/ng-select": "^10.0.4",
     "@ngx-translate/core": "^14.0.0",
+    "ngx-indexed-db": "^16.0.0",
     "angular-gtag": "^1.0.4",
     "crypto-js": "^4.1.1",
     "firebase": "^9.18.0",

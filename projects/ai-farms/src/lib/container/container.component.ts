@@ -11,6 +11,8 @@ import { SharedService } from '../services/shared.service';
 })
 export class ContainerComponent implements OnInit, AfterViewInit {
   public src: string = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/Tulio-manos-corazon.svg';
+  public backgroundMaps = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/BackgroundMapsOne.png';
+  public backgroundProducts = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/backgroundProductsWeb.png';
   //buttons
   public add_Farms: boolean = false;
   //Views
@@ -61,9 +63,9 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     // window.addEventListener("load", (event) => {
     //   this.isLoading = false;
     // });
-    if (this.begin = true) {
-      this.viewBegin = true;
-    }
+    // if (this.begin = true) {
+    //   this.viewBegin = true;
+    // }
 
   }
 
@@ -72,7 +74,9 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     this._router.events.pipe(takeUntil(this.$skip)).subscribe((event) => {
       if (event instanceof NavigationEnd) this.alterImage(event.url);
     });
+
   }
+
   ngAfterViewInit(): void {
     setTimeout(() => this.isLoading = false, 1000)
   }

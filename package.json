@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "deploy:dev": "gcloud app deploy ./dist/develop.yaml --project=agrodata-ai-dev --version=ai-entry --no-promote",
     "test": "ng test",
-    "pack": "ng build ai-entry && cd dist/ai-entry/ && npm pack && cd ../../",
+    "pack": "ng build ai-farms && cd dist/ai-farms/ && npm pack && cd ../../",
     "env": "cd .. && cd ./Scripts && call activate.bat && cd ../farms-workspace && cmd"
   },
   "private": true,

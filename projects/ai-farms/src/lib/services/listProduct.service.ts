@@ -13,7 +13,7 @@ export class ListProductService {
     //Agregar el encabezado de autorización
     // return this._credentials.generateRequest('get', 'page', 'apps/products/register/?name=Arroz');
     return this._credentials.generateRequest(
-      'get', 'page', 'apps/products/register/?name=Arroz',
+      'get', 'user', 'apps/products/register/', 'name=Arroz',
       undefined, undefined, undefined, false
     ).pipe(
       map((res: any) => ({ ...res }))

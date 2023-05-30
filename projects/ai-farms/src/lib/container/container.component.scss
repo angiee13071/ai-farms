@@ -43,6 +43,16 @@
 
 }
 
+.half {
+    width: 100%;
+}
+
+.area {
+    display: flex;
+    flex-direction: row;
+
+}
+
 .title-container {
     font-family: 'Quicksand';
     font-style: normal;
@@ -95,11 +105,10 @@
 }
 
 .ai-button-l {
-    width: 23rem;
+    width: 27rem;
 }
 
 .location {
-    margin-top: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: center;

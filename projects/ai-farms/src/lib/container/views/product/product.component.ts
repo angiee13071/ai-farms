@@ -46,10 +46,10 @@ export class ProductComponent implements OnInit {
   constructor(public _forms: FormsService, public _listProducts: ListProductService) { }
 
   ngOnInit() {
-    this._forms.lookForm.get('product')?.valueChanges.subscribe(value => {
-      this._forms.lookForm = value;
-      this.productValue = value
-    });
+    // this._forms.lookForm.get('product')?.valueChanges.subscribe(value => {
+    //   this._forms.lookForm = value;
+    //   this.productValue = value
+    // });
   }
   public toggleButton(index: number): void {
     //this.isRemoveButton = !this.isRemoveButton;

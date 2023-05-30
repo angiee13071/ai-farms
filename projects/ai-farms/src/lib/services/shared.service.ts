@@ -7,19 +7,20 @@ import { Subject } from 'rxjs';
 })
 export class SharedService {
   public typeLocation: string = 'none';
-  public typeLocationChange: Subject<void> = new Subject<void>();
+  public typeLocationChange: Subject<string> = new Subject<string>();
+
   constructor(private _http: HttpClient) { }
   public changeMaps(): void {
-    if (this.typeLocation === 'forms') this.typeLocation = 'maps';
-    else if (this.typeLocation === 'none') this.typeLocation = 'maps';
+    if (this.typeLocation === 'forms') { this.typeLocation = 'maps'; console.log("se cambio de forms a maps"); }
+    else if (this.typeLocation === 'none') { this.typeLocation = 'maps'; console.log("se cambio de none a maps") }
     this.notifyTypeLocationChange();
   }
   public changeForms(): void {
-    if (this.typeLocation === 'maps') this.typeLocation = 'forms';
-    else if (this.typeLocation === 'none') this.typeLocation = 'forms';
+    if (this.typeLocation === 'maps') { this.typeLocation = 'forms'; console.log("se cambio de maps a forms") }
+    else if (this.typeLocation === 'none') { this.typeLocation = 'forms'; console.log("se cambio de none a forms") }
     this.notifyTypeLocationChange();
   }
-  private notifyTypeLocationChange(): void {
-    this.typeLocationChange.next();
+  public notifyTypeLocationChange(): void {
+    this.typeLocationChange.next(this.typeLocation);
   }
 }

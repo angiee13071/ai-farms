@@ -1,0 +1,12 @@
+<div class="forms">
+  <form [formGroup]="_forms.locationForm">
+    <ai-form-input [form]="_forms.locationForm" [settings]="location[0]"></ai-form-input>
+    <ai-form-input [form]="_forms.locationForm" [settings]="name[0]"></ai-form-input>
+    <div class="area">
+      <ai-form-input class="half" [form]="_forms.locationForm" [settings]="area[0]"></ai-form-input>
+      <ai-form-select class="half" [form]="_forms.locationForm" [settings]="unit"></ai-form-select>
+    </div>
+    <ai-form-select [form]="_forms.locationForm" [settings]="property"></ai-form-select>
+    <button class="ai-button-l bg-green-2 mgt-2"><a>Agregar</a></button>
+  </form>
+</div>

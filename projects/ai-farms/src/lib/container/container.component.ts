@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject, of, takeUntil } from 'rxjs';
 import { SharedService } from '../services/shared.service';
+import { AiNgSelect } from '@agrodatai/forms';
+import { FormsService } from '../services/forms.service';
 
 @Component({
   selector: 'app-container',
@@ -10,6 +12,32 @@ import { SharedService } from '../services/shared.service';
   styleUrls: ['./container.component.scss']
 })
 export class ContainerComponent implements OnInit, AfterViewInit {
+  public size: 's' | 'm' | 'l' = 's';
+  public location: any[] = [{ controlname: 'location', type: 'text', icon: 'map-mark', label: 'Ubicación Finca / Predio ', placeholder: 'Ej: Vereda El Rosal' }]
+  public name: any[] = [{ controlname: 'name', type: 'text', icon: 'farm', label: 'Nombre de la finca (Opcional)', placeholder: 'Ej: Mi terruño' }]
+  public area: any[] = [{ controlname: 'area', type: 'number', label: 'Área', placeholder: 'Ej: 7', radio: "10px 0px 0px 10px" }]
+  public unit: AiNgSelect = {
+    controlname: 'unit',
+    options: [
+      { default: true, label: ' Hectáreas', value: " Hectáreas" },
+      { default: false, label: 'Metros', value: "Metros" },
+      { default: false, label: 'Kilómetros', value: "Kilómetros" },
+      { default: false, label: 'Acres', value: "Acres" },
+      { default: false, label: 'Millas', value: "Millas+51" }
+    ], type: 'select', error: false, label: 'Unidad', radio: "0px 10px 10px 0px",
+    errors: { required: 'Completa este campo.' }
+  }
+  public property: AiNgSelect = {
+    controlname: 'property',
+    options: [
+      { default: true, label: 'Propia', value: "Propia" },
+      { default: false, label: 'Arrendada', value: "Arrendada" },
+      { default: false, label: 'Alquilada', value: "Alquilada" },
+      { default: false, label: 'Familiar', value: "Familiar" },
+    ], type: 'select', error: false, label: 'La Finca / Predio es:',
+    errors: { required: 'Completa este campo.' }
+  }
+
   public src: string = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/Tulio-manos-corazon.svg';
   public backgroundMaps = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/BackgroundMapsOne.png';
   public backgroundProducts = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/backgroundProductsWeb.png';
@@ -59,6 +87,7 @@ export class ContainerComponent implements OnInit, AfterViewInit {
   constructor(
     @Inject('commonService') public _common: any,
     private _router: Router, public _sharedService: SharedService,
+    public _forms: FormsService
   ) {
     // window.addEventListener("load", (event) => {
     //   this.isLoading = false;
@@ -83,9 +112,11 @@ export class ContainerComponent implements OnInit, AfterViewInit {
 
   maps() {
     this._sharedService.changeMaps();
+    console.log(this._sharedService.typeLocation)
   }
   forms() {
     this._sharedService.changeForms();
+    console.log(this._sharedService.typeLocation)
   }
   private alterImage(path: string) {
     const tmp = this.imageUrlsWeb

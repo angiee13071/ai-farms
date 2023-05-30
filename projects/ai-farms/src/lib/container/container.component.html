@@ -3,23 +3,23 @@
     [ngStyle]="{   'background-image': (_common.device === 'web'&& product) ? 'url(' + backgroundProducts + ')' : ''}"
     style=" background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div *ngIf="begin">
-      <div class="title-container">¡Hola @Caro, AgrodatAi te da la bienvenida!</div>
+      <div class="title-container" *ngIf="_sharedService.typeLocation==='none'">¡Hola @Caro, AgrodatAi te da la
+        bienvenida!</div>
     </div>
     <img class="image" [src]="src" loading="lazy" />
     <div *ngIf="begin">
-      <div> <button class="ai-button-l bg-green-2" (click)="forms()">
+      <div *ngIf="_sharedService.typeLocation==='none'"> <button class="ai-button-l bg-green-2" (click)="forms()">
           <a class="text-login"> Agrega tus fincas</a></button>
-        <div class="location">
-          <div> <button class="button-location" (click)="maps()"></button></div>
-          <div class="text">Tomar mí ubicación</div>
-        </div>
+      </div>
+      <div class="location" *ngIf="_sharedService.typeLocation==='maps'||_sharedService.typeLocation==='forms'">
+        <app-data></app-data>
       </div>
     </div>
     <div *ngIf="product">
       <div class="card">
         <p class="text-product">Agrega los productos en tu finca</p>
       </div>
-      <div class="center"> <button class="button-add" (click)="maps()"></button></div>
+      <div class="center"> <button class="button-add"></button></div>
     </div>
     <div class="back" *ngIf="product">
       <button class="ai-button-back-web" [routerLink]="['/']">&larr; Atrás</button>
@@ -32,6 +32,4 @@
   }" class="aie-right" style=" background-size: cover; background-position: center; background-repeat: no-repeat;">
     <router-outlet></router-outlet>
   </div>
-
-
 </div>

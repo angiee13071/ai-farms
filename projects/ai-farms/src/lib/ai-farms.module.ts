@@ -7,12 +7,14 @@ import { AiFarmsRoutingModule } from '../lib/ai-farms.routing'
 
 @NgModule({
   declarations: [
-    AiFarmsComponent
+    AiFarmsComponent,
+
   ],
   imports: [
     AiFarmsRoutingModule,
     ContainerModule,
     HttpClientModule,
+
   ],
   exports: [
     AiFarmsComponent

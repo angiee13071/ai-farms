@@ -7,6 +7,8 @@ import { ListProductService } from '../../../services/listProduct.service'
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
+  public buttonSearch = false;
+  public productsExist = true;
   public size: 's' | 'm' | 'l' = 'l';
   public list_products: any;
   public buttonStates: { [key: string]: boolean } = {};
@@ -14,29 +16,7 @@ export class ProductComponent implements OnInit {
   public productValue = this._forms.lookForm.get('product')?.value
   public removeButton = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/removebutton.png';
   public addButton = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/add.svg';
-  public results = {
-    "count": 2,
-    "next": null,
-    "previous": null,
-    "results": [
-      {
-        "id": 1,
-        "name": "ARROZ SECANO",
-        "image": "https://storage.googleapis.com/front-agrodatai-dev/agrodatai/products/Don-Tulio-Prices.svg",
-        "product_id": 4,
-        "crop_id": null,
-        "subgroup_id": null
-      },
-      {
-        "id": 2,
-        "name": "Arroz",
-        "image": "https://storage.googleapis.com/front-agrodatai-dev/agrodatai/products/Don-Tulio-Prices.svg",
-        "product_id": null,
-        "crop_id": 1,
-        "subgroup_id": null
-      }
-    ]
-  };
+  public results: any;
   public product: any[] = [{
     controlname: 'product', type: 'text', icon: 'lupa', label: '', placeholder: 'Ej: Maíz', errors: {
       pattern: 'Sólo letras',
@@ -60,16 +40,14 @@ export class ProductComponent implements OnInit {
 
   }
   search() {
-    // this._listProducts.list('Arroz').subscribe({
-    //   next: async (res: any) => {
-    //     console.log(res)
-    //   }
-    // })
-
+    this.buttonSearch = true;
     this._listProducts.list('Arroz').subscribe(
       (response: any) => {
         this.results = response.results;
-        console.log(response)
+        console.log("item:", this.results)
+        if (this.results == null) {
+          this.productsExist = false;
+        }
       },
       (error: any) => {
         console.error(error);

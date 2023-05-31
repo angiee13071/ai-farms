@@ -14,7 +14,7 @@ export class MapService {
             console.error('Element with ID "map" not found');
             return;
         }
-        console.log(latitude, longitude, document)
+        // console.log(latitude, longitude, document)
         // window.addEventListener('load', () => {
         const map = new google.maps.Map(mapElement, {
             center: { lat: latitude, lng: longitude },
@@ -52,7 +52,7 @@ export class MapService {
                 }
             ]
         });
-        console.log(map)
+        // console.log(map)
         const marker = new google.maps.Marker({
             position: { lat: 4.648625, lng: -74.062404 },
             map: map, title: 'Tú ubicación', draggable: true

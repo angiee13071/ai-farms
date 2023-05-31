@@ -14,6 +14,8 @@ export * from './lib/container/views/begin/begin.component';
 export * from './lib/container/views/finish/finish.component';
 export * from './lib/container/views/product/product.component';
 export * from './lib/container/views/summary/summary.component';
+export * from './lib/container/views/addProduct/addProduct.component';
+export * from './lib/container/views/data/data.component';
 export * from './lib/firebaseConfig';
 //servicios
 export * from './lib/services/createFarm.service';

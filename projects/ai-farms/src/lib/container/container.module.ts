@@ -7,9 +7,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BeginComponent } from './views/begin/begin.component';
 import { FinishComponent } from './views/finish/finish.component';
 import { ProductComponent } from './views/product/product.component';
-import { AddProductComponent } from './views/addProduct/addProduct.component'
+import { AddProductComponent } from './views/addProduct/addProduct.component';
 import { SummaryComponent } from './views/summary/summary.component';
-import { DataComponent } from './views/data/data.component'
+import { DataComponent } from './views/data/data.component';
+
 import { AngularFireModule } from '@angular/fire/compat';
 import firebaseConfig from '../firebaseConfig';
 import { AiFormsModule } from '@agrodatai/forms';

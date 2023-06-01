@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsService } from '../../../services/forms.service';
 import { ListProductService } from '../../../services/listProduct.service'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -23,9 +24,10 @@ export class ProductComponent implements OnInit {
       required: 'El campo es requerido'
     }
   }]
-  constructor(public _forms: FormsService, public _listProducts: ListProductService) { }
+  constructor(public _forms: FormsService, public _listProducts: ListProductService, private _router: Router,) { }
 
   ngOnInit() {
+    this.searchDefault();
     // this._forms.lookForm.get('product')?.valueChanges.subscribe(value => {
     //   this._forms.lookForm = value;
     //   this.productValue = value
@@ -40,14 +42,39 @@ export class ProductComponent implements OnInit {
 
   }
   search() {
+    const product = this._forms.lookForm.controls["product"].value
+    console.log(product)
     this.buttonSearch = true;
-    this._listProducts.list('Arroz').subscribe(
+    this._listProducts.list(product).subscribe(
       (response: any) => {
         this.results = response.results;
         console.log("item:", this.results)
-        if (this.results == null) {
+        if (this.results.length > 0 || this.results != null) {
+          this.productsExist = true;
+        } else {
           this.productsExist = false;
+          this._router.navigate(['/add'])
         }
+        console.log(this.productsExist)
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+  searchDefault() {
+    this.buttonSearch = true;
+    this._listProducts.listDefault().subscribe(
+      (response: any) => {
+        this.results = response.results;
+        console.log("item:", this.results)
+        if (this.results.length > 0 || this.results != null) {
+          this.productsExist = true;
+        } else {
+          this.productsExist = false;
+          this._router.navigate(['/add'])
+        }
+        console.log(this.productsExist)
       },
       (error: any) => {
         console.error(error);

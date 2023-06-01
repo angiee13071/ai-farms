@@ -7,9 +7,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BeginComponent } from './views/begin/begin.component';
 import { FinishComponent } from './views/finish/finish.component';
 import { ProductComponent } from './views/product/product.component';
-import { AddProductComponent } from './views/addProduct/addProduct.component';
+import { NewProductComponent } from './views/newProduct/newProduct.component';
 import { SummaryComponent } from './views/summary/summary.component';
-import { DataComponent } from './views/data/data.component';
+import { FormComponent } from './views/form/form.component';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import firebaseConfig from '../firebaseConfig';
@@ -37,9 +37,9 @@ import { AiTranslateService } from '@agrodatai/core';
     BeginComponent,
     FinishComponent,
     ProductComponent,
-    AddProductComponent,
+    NewProductComponent,
     SummaryComponent,
-    DataComponent
+    FormComponent
 
   ],
   providers: [

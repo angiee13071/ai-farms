@@ -8,9 +8,8 @@
     margin-top: 2rem;
 }
 
-.ai-form-group,
-.ai-form-input-group-m {
-    width: 40rem;
+.ai-form-group {
+    width: 90%;
 }
 
 .aie-container {
@@ -23,6 +22,27 @@
 
 }
 
+.rectangle {
+    display: flex;
+    flex-direction: row;
+    height: 2.75rem;
+    align-items: center;
+
+}
+
+.ai-icon-search {
+    // border: 1px #1AA482;
+    border: none;
+    height: 44.5px;
+    width: 1rem;
+    margin-top: 2rem;
+
+}
+
+.search {
+    background-color: #ffffff;
+    border: none;
+}
 
 .filter {
     grid-area: 1 / 1 / 2 / 2;

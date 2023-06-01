@@ -1,16 +1,15 @@
 <div class="aie-container">
   <div class="filter">
-    <div class="rectangle">
-      <form [formGroup]="_forms.lookForm"> <ai-form-input [form]="_forms.lookForm" [settings]="product[0]"><i
-            class="icon"></i></ai-form-input>
-      </form>
-      <button (click)=" search()">buscar</button>
+    <div class="rectangle" *ngIf="productsExist===true">
+      <form [formGroup]="_forms.lookForm"> <ai-form-input [form]="_forms.lookForm" [settings]="product[0]">
+        </ai-form-input> </form>
+      <button class="search" (click)=" search()"> <i class="ai-icon-search color-green-1"></i></button>
     </div>
-    <div *ngIf="buttonSearch===true">
+    <div *ngIf="buttonSearch===true && productsExist===true">
       <p class="title">Incluir productos</p>
       <p> {{productValue}}</p>
     </div>
-    <div class="card-container">
+    <div class="card-container" *ngIf="buttonSearch===true && productsExist===true">
       <div class="list">
         <div class="card" *ngFor="let item of results; let i = index">
           <img class="photo" [src]="item.image" alt="Imagen">
@@ -21,19 +20,20 @@
             <p class="text_button">Agregar</p>
           </div>
         </div>
-      </div>
-
-      <hr class="line">
-      <p class="subtitle">¿No encontraste tu producto? </p>
-      <div class="card_two">
-        <div class="button"> <button class="button_add_two"
-            [ngStyle]="{'background-image': isRemoveButton ? 'url(' + removeButton + ')' : 'url(' + addButton + ')'}"
-            (click)="toggleButtonTwo()"></button>
-          <p class="text_button_two">Agrégalo aquí</p>
+        <div>
+          <hr class="line">
+          <p class="subtitle">¿No encontraste tu producto? </p>
+          <div class="card_two">
+            <div class="button"> <button class="button_add_two"
+                [ngStyle]="{'background-image': isRemoveButton ? 'url(' + removeButton + ')' : 'url(' + addButton + ')'}"
+                (click)="toggleButtonTwo()"></button>
+              <p class="text_button_two">Agrégalo aquí</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="buttons">
+    <div class="buttons" *nfIf="productsExist===true">
       <button class="ai-button-back-web"> Siguiente&rarr;</button>
     </div>
   </div>

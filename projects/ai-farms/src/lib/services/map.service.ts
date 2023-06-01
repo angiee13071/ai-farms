@@ -1,11 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 /// <reference path="<relevant path>/node_modules/@types/googlemaps/index.d.ts" />
 import { } from 'googlemaps';
+import { Observable, map } from 'rxjs';
 declare const google: any;
 @Injectable()
 export class MapService {
-
-    constructor() { }
+    private geocodeApiUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
+    private apiKey = 'AIzaSyA2nt7WTUh_f7rArhuYjgwYc0ohnAv2e7g';
+    constructor(private _http: HttpClient) { }
 
     addMap(latitude: number, longitude: number, elementId: string) {
 
@@ -63,5 +66,17 @@ export class MapService {
             marker.setPosition(clickedLocation);
         });
         //  });
+    }
+    getLocation(latitude: any, longitude: any): Observable<string> {
+        return this._http.get(`${this.geocodeApiUrl}?latlng=${latitude},${longitude}&key=${this.apiKey}`)
+            .pipe(
+                map((response: any) => {
+                    if (response.status === 'OK' && response.results.length > 0) {
+                        const placeName = response.results[0].formatted_address;
+                        return placeName;
+                    }
+                    throw new Error('No se encontró el nombre del lugar.');
+                })
+            );
     }
 }

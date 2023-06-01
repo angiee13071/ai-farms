@@ -6,25 +6,20 @@ import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ListProductService {
-
-
+export class SaveProductService {
   constructor(@Inject('CredentialsService') private _credentials: any) { }
-  list(product: string) {
+  saveProduct(locations: number, products: number) {
+    const data = {
+      locations: locations,
+      products: products
+    }
     return this._credentials.generateRequest(
-      'get', 'user', 'apps/products/register/', {}, `name=${product}`,
-      undefined, undefined, true
+      'post', 'user', 'apps/locations_products/', data,
+      undefined, undefined, undefined, false
     ).pipe(
       map((res: any) => ({ ...res }))
     )
   }
-  listDefault() {
-    return this._credentials.generateRequest(
-      'get', 'user', 'apps/products/register/',
-      undefined, undefined, undefined, undefined, true
-    ).pipe(
-      map((res: any) => ({ ...res }))
-    )
-  }
-}
 
+
+}

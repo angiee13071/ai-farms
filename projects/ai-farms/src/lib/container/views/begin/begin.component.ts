@@ -11,10 +11,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./begin.component.scss']
 })
 export class BeginComponent implements OnInit {
-  private locationSubscription: Subscription | undefined;
   public lat: any;
   public long: any;
   public userData: any;
+  public getPlace: boolean = false;
+
   images = [
     {
       src: 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/Tulio-Asomado.svg',
@@ -38,45 +39,57 @@ export class BeginComponent implements OnInit {
   }
   ngOnInit() {
     setTimeout(() => {
-      this._map.addMap(4.60971, -74.08175, 'map-none');
+      this._map.addMap(4.60971, -74.08175, 'mapDefault');
     });
-
     this._user.getUser();
     this._user.user_firebase.subscribe((userData: any) => {
       this.userData = userData;
+      console.log("datauserbegin:", userData)
     });
 
-    this._sharedService.typeLocationChange.subscribe((typeLocation: string) => {
+    // this._sharedService.typeLocationChange.subscribe((getLocation: boolean) => {
 
-      if (typeLocation === 'maps') {
-        setTimeout(() => {
-          this._map.addMap(this.lat, this.long, 'map-maps');
-        });
+    //   if (getLocation === true) {
+    //     setTimeout(() => {
+    //       this._map.addMap(this.lat, this.long, 'map');
+    //     });
 
-      } else if (typeLocation === 'forms') {
-        setTimeout(() => {
-          this._map.addMap(4.60971, -74.08175, 'map-forms');
-        });
-      }
-    });
-  }
-  latitude() {
-    this.lat = this.userData.last_location.coords.latitude
-    console.log(this.lat)
-  }
-  longitude() {
-    this.long = this.userData.last_location.coords.longitude
-    console.log(this.long)
+    //   }
+    // });
+    // if (this.getPlace === true) {
+    //   setTimeout(() => {
+    //     this._map.addMap(this.userData.last_location.coords.latitude,this.userData.last_location.coords.longitude, 'map');
+    //   });
+    // } else if (this.getPlace === false) {
+
+
+    // }
   }
 
-  maps() {
+
+  mapsWeb() {
     this._user.getLocation();
-    this.latitude();
-    this.longitude();
-    this._sharedService.changeMaps();
+    this.getPlace = true;
+    this.lat = this.userData.last_location.coords.latitude;
+    this.long = this.userData.last_location.coords.longitude;
+    //this._sharedService.changeMaps();
+    setTimeout(() => {
+      this._map.addMap(this.lat, this.long, 'map');
+    });
+    this.getLocationName();
   }
-  forms() {
-    this._sharedService.changeForms();
+
+  getLocationName() {
+    this._map.getLocation(this.lat, this.long)
+      .subscribe(
+        (placeName: string) => {
+          this._sharedService.setName(placeName)
+          console.log('Lugar:', placeName);
+        },
+        (error: any) => {
+          console.error('Error al obtener el nombre del lugar:', error);
+        }
+      );
   }
 
 }

@@ -1,35 +1,33 @@
 <div *ngIf="_common.device === 'web'">
-  <div *ngIf="_sharedService.typeLocation==='none'">
-    <div class="button-get"> <button class="button-location" (click)="maps()"></button>
-      <div class="text">Tomar mí ubicación</div>
-    </div>
-    <div id="map-none"></div>
+  <div class="button-get">
+    <div> <button class="button-location" (click)="mapsWeb()"></button></div>
+    <div class="text">Tomar mí ubicación</div>
   </div>
-  <div *ngIf="_sharedService.typeLocation==='maps'">
-    <div id="map-maps"></div>
-  </div>
-  <div *ngIf="_sharedService.typeLocation==='forms'">
-    <div id="map-forms"></div>
-  </div>
+
+  <div *ngIf="this.getPlace===false" id="mapDefault"></div>
+  <div *ngIf="this.getPlace===true" id="map"></div>
 </div>
 <div *ngIf="_common.device === 'mobile'">
-  <div class="container" *ngIf="_sharedService.typeLocation==='none'">
+  <div *ngIf="getPlace===false">
     <div class="title-container">¡Hola @Caro, AgrodatAi te da la bienvenida!</div>
     <div> <img class="tulio" [src]="images[0].src" [alt]="images[0].alt" alt="Don Tulio"></div>
-    <div> <button class="ai-button-m bg-green-2" (click)="forms()">
+
+    <div> <button class="ai-button-m bg-green-2">
         <a class="text-login"> Agrega tus fincas</a></button>
       <div class="buttons">
-        <div> <button class="button-location" (click)="maps()"></button></div>
+        <div> <button class="button-location"></button></div>
         <div class="text">Tomar mí ubicación</div>
       </div>
     </div>
   </div>
-  <div *ngIf="_sharedService.typeLocation==='maps'">
-    <div id="map-maps"></div>
-    <div class="aie-card-map"><app-data></app-data> </div>
+
+
+  <div *ngIf="getPlace===true">
+    <div id="map"></div>
+    <div class="aie-card-map"><app-form></app-form> </div>
   </div>
-  <div *ngIf="_sharedService.typeLocation==='forms'">
-    <div class="aie-card-map"> <app-data></app-data>
+  <div *ngIf="_sharedService.getLocation===true">
+    <div class="aie-card-map"> <app-form></app-form>
     </div>
   </div>
 </div>

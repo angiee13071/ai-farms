@@ -12,7 +12,9 @@ import { FormsService } from '../services/forms.service';
   styleUrls: ['./container.component.scss']
 })
 export class ContainerComponent implements OnInit, AfterViewInit {
+  public userData: any;
   public size: 's' | 'm' | 'l' = 's';
+  public placeName: string | undefined;
   public location: any[] = [{ controlname: 'location', type: 'text', icon: 'map-mark', label: 'Ubicación Finca / Predio ', placeholder: 'Ej: Vereda El Rosal' }]
   public name: any[] = [{ controlname: 'name', type: 'text', icon: 'farm', label: 'Nombre de la finca (Opcional)', placeholder: 'Ej: Mi terruño' }]
   public area: any[] = [{ controlname: 'area', type: 'number', label: 'Área', placeholder: 'Ej: 7', radio: "10px 0px 0px 10px" }]
@@ -86,6 +88,7 @@ export class ContainerComponent implements OnInit, AfterViewInit {
   miJSON: any = {}
   constructor(
     @Inject('commonService') public _common: any,
+    @Inject('UserService') public _user: any,
     private _router: Router, public _sharedService: SharedService,
     public _forms: FormsService
   ) {
@@ -99,11 +102,19 @@ export class ContainerComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
+    // this._user.getUser();
+    // this._user.user_firebase.subscribe((userData: any) => {
+    //   this.userData = userData;
+    //   console.log("datausercontainer:", this.userData)
+    // });
+
     this.alterImage(this._router.url)
     this._router.events.pipe(takeUntil(this.$skip)).subscribe((event) => {
       if (event instanceof NavigationEnd) this.alterImage(event.url);
     });
-
+    this.placeName = this._sharedService.getName()
+    console.log("lugar obtenido en container", this.placeName)
   }
 
   ngAfterViewInit(): void {
@@ -112,12 +123,12 @@ export class ContainerComponent implements OnInit, AfterViewInit {
 
   maps() {
     this._sharedService.changeMaps();
-    console.log(this._sharedService.typeLocation)
+    console.log(this._sharedService.getLocation)
   }
-  forms() {
-    this._sharedService.changeForms();
-    console.log(this._sharedService.typeLocation)
-  }
+  // forms() {
+  //   this._sharedService.changeForms();
+  //   console.log(this._sharedService.typeLocation)
+  // }
   private alterImage(path: string) {
     const tmp = this.imageUrlsWeb
       .filter((url: any) => url.paths.includes(`${path}`))

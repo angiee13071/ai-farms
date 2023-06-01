@@ -135,24 +135,12 @@
 }
 
 
-#map-none {
+#map,
+#mapDefault {
     height: 43rem;
     width: 48rem;
 
 }
-
-#map-maps {
-    height: 43rem;
-    width: 48rem;
-
-}
-
-#map-forms {
-    height: 43rem;
-    width: 48rem;
-}
-
-
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -209,8 +197,11 @@
         width: 18rem;
     }
 
-    #map-maps {
+    #map,
+    #mapDefault {
         width: 30rem;
         height: 26rem;
     }
+
+
 }

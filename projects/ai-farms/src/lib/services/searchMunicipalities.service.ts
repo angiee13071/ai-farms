@@ -4,14 +4,12 @@ import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CreateFarmService {
-
+export class SearchMunicipalitiesService {
   constructor(@Inject('CredentialsService') private _credentials: any) { }
-  createFarm(data: { user: number, name: string, divipola: string, longitude: string, latitude: string, area: number, area_unit: number, tenure: number }) {
+  municipalities(name: string | null) {
     return this._credentials.generateRequest(
-      'post', 'user', 'apps/locations/',
-      data,
-      undefined, undefined, undefined, false
+      'get', 'user', 'apps/municipalities/', {}, `name=${name}`,
+      undefined, undefined, true
     ).pipe(
       map((res: any) => ({ ...res }))
     )

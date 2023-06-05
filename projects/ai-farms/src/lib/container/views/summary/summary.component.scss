@@ -1,0 +1,201 @@
+.products {
+    position: relative;
+    z-index: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(217, 217, 217, 0.66);
+    z-index: 1;
+}
+
+.alert {
+
+    background-color: rgb(255, 255, 255);
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    color: #007B55;
+    width: 18.7rem;
+    height: 12rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+.tulio {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    position: absolute;
+    top: 10rem;
+    left: 63rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ai-button-m {
+    width: 4.5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 23.5rem;
+}
+
+.buttons {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+}
+
+.alert_two {
+
+    background-color: rgb(255, 255, 255);
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    color: #007B55;
+    width: 25rem;
+    height: 12rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+.buttons_two {
+    display: flex;
+    flex-direction: row;
+}
+
+.box_two {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    position: absolute;
+    bottom: 1rem;
+
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table th {
+    border-bottom: 1px solid rgb(0, 0, 0);
+    padding: 0.5rem;
+}
+
+.table td {
+    border-bottom: 1px solid gray;
+    padding: 0.5rem;
+}
+
+
+
+.products {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: initial;
+    color: #007B55;
+}
+
+.title_products {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #572F75;
+}
+
+.title_table {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: left;
+    color: #007B55;
+    border-bottom: 1px solid #000000;
+
+}
+
+.table {
+    background: #E9E7E7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 2px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 1.37rem;
+    width: 20rem;
+    height: auto;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+th {
+    width: 10rem;
+}
+
+tr {
+    height: 2rem;
+}
+
+.title_summary {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 38px;
+    text-align: center;
+    color: #1AA482;
+
+
+}
+
+@media (max-width: 768px) {
+    .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: inherit;
+    }
+
+    .summary {
+        margin-top: 3rem;
+    }
+
+    .logo {
+        position: inherit;
+        bottom: 1rem;
+
+    }
+}

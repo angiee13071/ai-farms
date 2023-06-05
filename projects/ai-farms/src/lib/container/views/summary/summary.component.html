@@ -1,3 +1,47 @@
-<p>
-  summary works!
-</p>
+<div class="products" *ngIf="_common.device === 'web'&& box">
+  <app-product></app-product>
+  <div class="overlay"></div>
+</div>
+<div class="box" *ngIf="box">
+  <div class="tulio"><img [src]="images[0].src" alt="Imagen"></div>
+  <div class="alert">
+    ¿Quieres agregar más fincas?
+  </div>
+  <div class="buttons">
+    <div><button class="ai-button-m bg-green-2" (click)="yes()">Sí</button></div>
+    <div><button class="ai-button-m bg-purple-1" (click)="no()">No</button></div>
+  </div>
+</div>
+<div class="summary" *ngIf="_common.device === 'mobile'&&box">
+  <hr>
+  <p class="title_summary">Resumen</p>
+  <div class="table">
+    <table>
+      <thead>
+        <tr class="title_table">
+          <th>Fincas</th>
+          <th>Productos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let finca of fincas" class="table_row">
+          <td class="title_products">{{ finca.nombre }}</td>
+          <td>
+            <div class="title_products">{{ finca.productos.length }} productos</div>
+            <div class="products">{{ finca.productos}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="box_two" *ngIf="finish">
+  <div class="alert_two"> ¡Todo listo! Mantente informado con nosotros y toma mejores decisiones.</div>
+  <div class="buttons_two">
+    <div><button class="ai-button-l bg-green-2" (click)="exit()">Aceptar</button></div>
+  </div>
+  <div class="tulio"><img [src]="images[1].src" alt="Imagen"></div>
+  <div class="logo">
+    <img loading="lazy" [src]="images[2].src" [alt]="images[1].alt" />
+  </div>
+</div>

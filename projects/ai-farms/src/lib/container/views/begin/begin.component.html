@@ -1,21 +1,21 @@
 <div *ngIf="_common.device === 'web'">
   <div class="button-get">
-    <div> <button class="button-location" (click)="mapsWeb()"></button></div>
+    <div> <button class="button-location" (click)="maps()"></button></div>
     <div class="text">Tomar mí ubicación</div>
   </div>
 
   <div *ngIf="this.getPlace===false" id="mapDefault"></div>
   <div *ngIf="this.getPlace===true" id="map"></div>
 </div>
-<div *ngIf="_common.device === 'mobile'">
+<div class="mobile" *ngIf="_common.device === 'mobile'">
   <div *ngIf="getPlace===false">
     <div class="title-container">¡Hola @Caro, AgrodatAi te da la bienvenida!</div>
-    <div> <img class="tulio" [src]="images[0].src" [alt]="images[0].alt" alt="Don Tulio"></div>
+    <div class="tulio"> <img class="tulio" [src]="images[0].src" [alt]="images[0].alt" alt="Don Tulio"></div>
 
-    <div> <button class="ai-button-m bg-green-2">
+    <div class="location"> <button class="ai-button-m bg-green-2" (click)="mobile()">
         <a class="text-login"> Agrega tus fincas</a></button>
       <div class="buttons">
-        <div> <button class="button-location"></button></div>
+        <div> <button class="button-location" (click)="maps()"></button></div>
         <div class="text">Tomar mí ubicación</div>
       </div>
     </div>

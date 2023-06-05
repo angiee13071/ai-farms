@@ -5,6 +5,7 @@ import { Subject, of, takeUntil } from 'rxjs';
 import { SharedService } from '../services/shared.service';
 import { AiNgSelect } from '@agrodatai/forms';
 import { FormsService } from '../services/forms.service';
+import { CreateFarmService } from '../services/createFarm.service'
 
 @Component({
   selector: 'app-container',
@@ -13,6 +14,7 @@ import { FormsService } from '../services/forms.service';
 })
 export class ContainerComponent implements OnInit, AfterViewInit {
   public userData: any;
+  public textCard: string = '';
   public size: 's' | 'm' | 'l' = 's';
   public placeName: string | undefined;
   public location: any[] = [{ controlname: 'location', type: 'text', icon: 'map-mark', label: 'Ubicación Finca / Predio ', placeholder: 'Ej: Vereda El Rosal' }]
@@ -32,10 +34,8 @@ export class ContainerComponent implements OnInit, AfterViewInit {
   public property: AiNgSelect = {
     controlname: 'property',
     options: [
-      { default: true, label: 'Propia', value: "Propia" },
-      { default: false, label: 'Arrendada', value: "Arrendada" },
-      { default: false, label: 'Alquilada', value: "Alquilada" },
-      { default: false, label: 'Familiar', value: "Familiar" },
+      { default: true, label: 'Propia', value: "1" },
+      { default: false, label: 'Arrendada', value: "2" },
     ], type: 'select', error: false, label: 'La Finca / Predio es:',
     errors: { required: 'Completa este campo.' }
   }
@@ -48,11 +48,13 @@ export class ContainerComponent implements OnInit, AfterViewInit {
   //Views
   public begin: boolean = false;
   public product: boolean = false;
+  public newProduct: boolean = false;
   public summary: boolean = false;
   public finish: boolean = false;
   public isLoading = true;
   //of begin:
   public viewBegin: boolean = false;
+
 
   private $skip = new Subject<void>();
   images = [
@@ -85,12 +87,29 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     },
 
   ];
+  fincas = [
+    {
+      nombre: 'Finca La Esperanza',
+      productos: ['Café', 'Plátano', 'Maíz']
+    },
+    {
+      nombre: 'Finca El Paraíso',
+      productos: ['Cacao', 'Aguacate', 'Naranja']
+    },
+    {
+      nombre: 'Finca San Juan',
+      productos: ['Arroz', 'Yuca', 'Papaya']
+    },
+
+  ];
   miJSON: any = {}
   constructor(
     @Inject('commonService') public _common: any,
     @Inject('UserService') public _user: any,
-    private _router: Router, public _sharedService: SharedService,
-    public _forms: FormsService
+    private _router: Router,
+    public _sharedService: SharedService,
+    public _forms: FormsService,
+
   ) {
     // window.addEventListener("load", (event) => {
     //   this.isLoading = false;
@@ -113,8 +132,13 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     this._router.events.pipe(takeUntil(this.$skip)).subscribe((event) => {
       if (event instanceof NavigationEnd) this.alterImage(event.url);
     });
-    this.placeName = this._sharedService.getName()
-    console.log("lugar obtenido en container", this.placeName)
+    // this.placeName = this._sharedService.getName()
+    // console.log("lugar obtenido en container", this.placeName)
+    if (this.product) {
+      this.textCard = 'Agrega los productos en tu finca'
+    } else if (this.newProduct) {
+      this.textCard = '¡No encontré tu producto!'
+    }
   }
 
   ngAfterViewInit(): void {
@@ -125,6 +149,7 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     this._sharedService.changeMaps();
     console.log(this._sharedService.getLocation)
   }
+
   // forms() {
   //   this._sharedService.changeForms();
   //   console.log(this._sharedService.typeLocation)
@@ -137,6 +162,7 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     path.includes(`/`) ? (this.begin = true) : (this.begin = false);
     path.includes('/begin') ? (this.begin = true) : (this.begin = false);
     path.includes('/product') ? (this.product = true) : (this.product = false);
+    path.includes('/new') ? (this.newProduct = true) : (this.newProduct = false);
     path.includes('/summary') ? (this.summary = true) : (this.summary = false);
   }
 

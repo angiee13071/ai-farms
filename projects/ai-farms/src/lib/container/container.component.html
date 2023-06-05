@@ -1,25 +1,48 @@
 <div class="aie-container">
   <div class="aie-left" *ngIf="_common.device === 'web'"
-    [ngStyle]="{   'background-image': (_common.device === 'web'&& product) ? 'url(' + backgroundProducts + ')' : ''}"
+    [ngStyle]="{   'background-image': (_common.device === 'web'&& product||newProduct) ? 'url(' + backgroundProducts + ')' : ''}"
     style=" background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div *ngIf="begin">
       <div class="title-container">¡Hola @Caro, AgrodatAi te da la
         bienvenida!</div>
     </div>
     <img class="image" [src]="src" loading="lazy" />
+    <p *ngIf="summary" class="title_summary">Resumen</p>
+    <div *ngIf="summary" class="table">
+      <table>
+        <thead>
+          <tr class="title_table">
+            <th>Fincas</th>
+            <th>Productos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let finca of fincas" class="table_row">
+            <td class="title_products">{{ finca.nombre }}</td>
+            <td>
+              <div class="title_products">{{ finca.productos.length }} productos</div>
+              <div class="products">{{ finca.productos}}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div *ngIf="begin">
       <app-form></app-form>
     </div>
-    <div *ngIf="product">
+    <div *ngIf="product||newProduct">
       <div class="card">
-        <p class="text-product">Agrega los productos en tu finca</p>
+        <p class="text-product">{{textCard}}</p>
       </div>
       <div class="center"> <button class="button-add"></button></div>
     </div>
-    <div class="back" *ngIf="product">
+    <div class="back" *ngIf="summary">
       <button class="ai-button-back-web" [routerLink]="['/']">&larr; Atrás</button>
     </div>
-    <div class="logo"><img loading="lazy" [src]="images[1].src" [alt]="images[1].alt" /></div>
+
+    <div class="logo">
+      <img loading="lazy" [src]="images[1].src" [alt]="images[1].alt" />
+    </div>
   </div>
   <div [ngStyle]="{
     'background-color': (_common.device === 'web' && begin) ? 'rgba(91, 46, 122, 0.90)' : 'rgb(255, 255, 255)',

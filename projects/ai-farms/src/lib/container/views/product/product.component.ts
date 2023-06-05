@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
   public buttonSearch = false;
+  // public productsExist = false;
   public productsExist = true;
   public size: 's' | 'm' | 'l' = 'l';
   public list_products: any;
@@ -19,6 +20,7 @@ export class ProductComponent implements OnInit {
   public addButton = 'https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/add.svg';
   public results: any;
   public product: any[] = [{
+    radio: "10px 0px 0px 10px",
     controlname: 'product', type: 'text', icon: 'lupa', label: '', placeholder: 'Ej: Maíz', errors: {
       pattern: 'Sólo letras',
       required: 'El campo es requerido'
@@ -54,6 +56,7 @@ export class ProductComponent implements OnInit {
         } else {
           this.productsExist = false;
           this._router.navigate(['/add'])
+          console.log("No hay productos")
         }
         console.log(this.productsExist)
       },
@@ -72,6 +75,7 @@ export class ProductComponent implements OnInit {
           this.productsExist = true;
         } else {
           this.productsExist = false;
+          console.log("No hay productos")
           this._router.navigate(['/add'])
         }
         console.log(this.productsExist)

@@ -1,7 +1,26 @@
-<p>
-  ¿Deseas agregarlo?
-</p>
-<button>Arandano</button>
-<p> ¡Gracias por ayudarnos a mejorar! Una vez validado, estaremos agregando información de éste producto más adelante.
-</p>
-<button>Agregar otro producto</button>
+<div class="container">
+  <div *ngIf="_common.device === 'mobile'">
+    <div class="title">¡No encontré tu producto!</div>
+    <div class="tulio"><img loading="lazy" [src]="image" /></div>
+
+  </div>
+  <div class="add">
+    <div class="title">¿Deseas agregarlo?</div>
+    <div class="card_two">
+      <div class="button">
+        <p class="text_button">Arandano</p> <button class="button_add_two"
+          [ngStyle]="{'background-image': isRemoveButton ? 'url(' + removeButton + ')' : 'url(' + addButton + ')'}"
+          (click)="toggleButtonTwo()">
+          <p class="text_button_two">Agregar</p>
+        </button>
+
+      </div>
+    </div>
+    <p class="text"> ¡Gracias por ayudarnos a mejorar! Una vez validado, estaremos agregando información de éste
+      producto
+      más adelante.
+    </p>
+    <button class="ai-button-m bg-green-2">Agregar otro producto</button>
+  </div>
+
+</div>

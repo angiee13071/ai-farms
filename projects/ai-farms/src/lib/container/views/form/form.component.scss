@@ -12,3 +12,22 @@
     width: 100%;
     margin-top: 1.5rem;
 }
+
+.box {
+    width: 92%;
+    height: 2rem;
+    color: #097a55;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 800;
+    font-size: var(--font-size-m);
+    border: 1px solid #c7c7c7;
+    box-sizing: content-box;
+    border-radius: 0.5rem;
+    list-style-type: none;
+    padding-left: 2rem;
+
+    &:hover {
+        background-color: #c7c7c7;
+        color: #623f83;
+    }
+}

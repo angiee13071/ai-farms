@@ -7,7 +7,7 @@ import Token from '../interfaces/Token';
 import { HttpClient } from '@angular/common/http';
 import { CredentialsService } from './credentials.service';
 import { AES, enc } from 'crypto-js';
-import { interval, map } from 'rxjs';
+import { BehaviorSubject, interval, map } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { CommonService } from './common.service';
 import { Router } from '@angular/router';
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 })
 export class UserService {
   public user: User | undefined;
-  public user_firebase: any;
+  public user_firebase: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public token: Token | undefined;
   public user_fire_ref: any;
   private id_location: any;
@@ -36,6 +36,7 @@ export class UserService {
   private setUser = async (user: User) => {
     await Preferences.set({ key: 'ai-user', value: this._utils.encrypt(user, environment.INDEXDB.SECRET_KEY) });
     this.user = user;
+    console.log("user setuser", user)
     this.getUserFirebase();
     this.user_fire_ref.update({ last_connection: Date.now(), navigator: navigator.userAgent });
   }
@@ -45,26 +46,28 @@ export class UserService {
     if (user) {
       const decrypt = await this._utils.decrypt(user, environment.INDEXDB.SECRET_KEY);
       this.user = decrypt;
+      console.log("user getuser", decrypt)
       this.getUserFirebase();
       this.user_fire_ref.update({ last_connection: Date.now(), navigator: navigator.userAgent });
+
     } else this.user = undefined;
   }
 
   public getUserFirebase() {
-    this.user_fire_ref = this._dbFire.doc(`users/${this.user?.id}`);
+    this.user_fire_ref = this._dbFire.doc(`test_users/${this.user?.id}`);
+    console.log("user_fire_ref", this.user?.id)
     this.user_fire_ref.snapshotChanges().pipe(
       map((a: any) => {
         const data = a.payload.data();
         if (data) {
-          // console.log('in snapshotChanges()', a, data);
           data['id'] = a.payload.id;
           return data;
         }
       })).subscribe((object: any) => {
-        // console.log('object', object);
-        this.user_firebase = object;
+        this.user_firebase.next(object);
       });
   }
+
 
   public updateCurrentUser = async (user: User | undefined) => {
     if (user) {
@@ -115,10 +118,9 @@ export class UserService {
     if (navigator.geolocation) {
       let that = this;
       let opts = { enableHighAccuracy: true, maximumAge: 60000, timeout: (environment.location_time * 1000) };
-      const handleSuccess = (position: any) => {
+      const handleSuccess = async (position: any) => {
         if (position) {
           if (that.user_fire_ref) {
-            // console.log(position);
             that.user_fire_ref.update({
               last_location: {
                 timestamp: position.timestamp,
@@ -133,7 +135,10 @@ export class UserService {
                 }
               }
             });
+            console.log("getlocation", that.user_fire_ref.last_connection.coords)
           }
+          // await Preferences.set({ key: 'tmpFireRef', value: this._utils.encrypt(that.user_fire_ref, environment.INDEXDB.SECRET_KEY) });
+
         }
       };
       const handleError = (error: any) => {

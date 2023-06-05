@@ -1,0 +1,137 @@
+.title {
+    color: #5B2E7A;
+    font-size: 2rem;
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+}
+
+.card_two {
+    background: #FFFFFF;
+    border: 1px solid #1AA482;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 0.5rem;
+    height: auto;
+    height: 6.5rem;
+    margin-top: 2rem;
+    width: 40rem;
+
+    .button {
+        display: flex;
+        flex-direction: initial;
+        align-items: center;
+    }
+}
+
+
+.button_add_two {
+    height: 3rem;
+    width: 3rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    background-image: url('https://storage.googleapis.com/front-agrodatai-dev/agrodatai/img/Material-Farms/add.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 1rem;
+    margin-left: 27rem;
+}
+
+.text_button {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    color: #007B55;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 1.5rem;
+    margin-left: 3rem;
+    padding-top: 0.5rem;
+}
+
+.text_button_two {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    color: #007B55;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 2.5rem;
+
+}
+
+.add {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.text {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    text-align: center;
+    width: 18rem;
+    color: #1AA482;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.ai-button-m {
+    height: 3.5rem;
+}
+
+@media (max-width: 768px) {
+    .card_two {
+        height: 4.5rem;
+        width: 18rem;
+    }
+
+    .text_button {
+        margin-top: 1rem;
+        margin-left: 1.5rem;
+        text-align: initial;
+        width: 7rem;
+    }
+
+    .button {
+        width: 18rem;
+    }
+
+    .button_add_two {
+        margin-top: 0.3rem;
+        margin-left: 6em;
+        height: 2.3rem;
+        width: 2.3rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .tulio {
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -57,7 +57,7 @@ export class MapService {
         });
         // console.log(map)
         const marker = new google.maps.Marker({
-            position: { lat: 4.648625, lng: -74.062404 },
+            position: { lat: latitude, lng: longitude },
             map: map, title: 'Tú ubicación', draggable: true
         });
         marker.setAnimation(google.maps.Animation.BOUNCE);

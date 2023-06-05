@@ -11,7 +11,6 @@ export * from './lib/container/container.component';
 export * from './lib/container/container.module';
 export * from './lib/container/container.routing';
 export * from './lib/container/views/begin/begin.component';
-export * from './lib/container/views/finish/finish.component';
 export * from './lib/container/views/product/product.component';
 export * from './lib/container/views/summary/summary.component';
 export * from './lib/container/views/newProduct/newProduct.component';

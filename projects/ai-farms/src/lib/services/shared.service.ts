@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,10 @@ import { Subject } from 'rxjs';
 export class SharedService {
   public getLocation: boolean = false;
   public typeLocationChange: Subject<boolean> = new Subject<boolean>();
-  public place: any;
+
+  public sharedData: any;
+  public userData: Subject<any> = new Subject<any>();
+
 
   constructor(private _http: HttpClient) { }
   public changeMaps(): void {
@@ -19,10 +22,23 @@ export class SharedService {
   public notifyTypeLocationChange(): void {
     this.typeLocationChange.next(this.getLocation);
   }
-  public setName(name: string) {
-    this.place = name
+  // public setName(name: string) {
+  //   this.place = name
+  // }
+  // public getName() {
+  //   return this.place
+  // }
+  setSharedData(data: any) {
+    this.sharedData = data;
+    this.notifyUserData()
   }
-  public getName() {
-    return this.place
+
+  getSharedData() {
+    this.notifyUserData()
+    return this.sharedData;
+
+  }
+  public notifyUserData(): void {
+    this.userData.next(this.sharedData);
   }
 }

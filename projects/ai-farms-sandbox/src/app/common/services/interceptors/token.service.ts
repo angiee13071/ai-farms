@@ -23,14 +23,10 @@ export class TokenInterceptor implements HttpInterceptor {
     let endpoint: any = request.headers.get('AgrodatAi-Token');
 
     let token: any;
-    if (endpoint == 'user') {
+    if (endpoint == 'user')
       token = this._user.token?.access_token;
-      console.log(token);
-    }
-    else if (endpoint == 'page') {
+    else if (endpoint == 'page')
       token = this._credentials.platformAccessToken;
-      console.log(token);
-    }
 
     if (request.url != `${environment.BACKEND_URL}auth/token/`) {
       let headers = request.headers.delete('AgrodatAi-Token');

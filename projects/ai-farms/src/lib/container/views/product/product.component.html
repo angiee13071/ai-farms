@@ -1,41 +1,55 @@
+<head>
+  <style>
+    #container {
+      height: 500px;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
 <div class="aie-container">
   <div class="filter">
-    <div class="rectangle" *ngIf="productsExist===true">
-      <form [formGroup]="_forms.lookForm"> <ai-form-input [form]="_forms.lookForm" [settings]="product[0]">
+    <div class="form" *ngIf="productsExist===true">
+      <form [formGroup]="_forms.lookForm" class="text"> <ai-form-input [form]="_forms.lookForm" [settings]="product[0]">
         </ai-form-input> </form>
       <button class="search" (click)=" search()"> <i class="ai-icon-search color-green-1"></i></button>
     </div>
-    <div *ngIf="buttonSearch===true && productsExist===true">
+    <div *ngIf="productsExist===true">
       <p class="title">Incluir productos</p>
       <p> {{productValue}}</p>
     </div>
-    <div class="card-container" *ngIf="buttonSearch===true && productsExist===true">
-      <div class="list">
-        <div class="card" *ngFor="let item of results; let i = index">
-          <img class="photo" [src]="item.image" alt="Imagen">
-          <p class="name">{{ item.name }}</p>
-          <div> <button class="button_add"
-              [ngStyle]="{'background-image': buttonStates[i] ? 'url(' + removeButton + ')' : 'url(' + addButton + ')'}"
-              (click)="toggleButton(i)"></button>
-            <p class="text_button">Agregar</p>
-          </div>
+  </div>
+  <div class="card-container" *ngIf="productsExist===true">
+    <div class="list" id="container">
+      <div class="card" *ngFor="let item of results; let i = index" id="element-list"
+        [ngStyle]="{'background-color': buttonStates[i]? 'white' : 'rgba(214, 217, 217, 0.76)'}">
+        <img class="photo" [src]="item.image" alt="Imagen">
+        <p class="name">{{ item.name }}</p>
+        <div> <button class="button_add"
+            [ngStyle]="{'background-image': buttonStates[i] ? 'url(' + removeButton + ')' : 'url(' + addButton + ')'}"
+            (click)="toggleButton(i)"></button>
+          <p class="text_button">Agregar</p>
         </div>
-        <div>
-          <hr class="line">
+      </div>
+      <div>
+        <hr class="line">
+        <div class="line-text">
           <p class="subtitle">¿No encontraste tu producto? </p>
-          <div class="card_two">
-            <div class="button"> <button class="button_add_two"
-                [ngStyle]="{'background-image': isRemoveButton ? 'url(' + removeButton + ')' : 'url(' + addButton + ')'}"
-                (click)="toggleButtonTwo()"></button>
-              <p class="text_button_two">Agrégalo aquí</p>
-            </div>
+          <p class="subtitle-two">Agrégalo aquí</p>
+        </div>
+        <div class="card_two">
+          <p class="placeholder">Ej: Arandanos</p>
+          <div class="button">
+            <button class="button_add_two" (click)="toggleButtonTwo()"></button>
+            <p class="text_button_two">Agregar</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="buttons" *nfIf="productsExist===true">
-      <button class="ai-button-back-web"> Siguiente&rarr;</button>
-    </div>
+  </div>
+  <div class="router">
+    <button class="ai-button-back" [routerLink]="['/begin']">&larr; Atrás</button>
+    <button class="ai-button-next" [routerLink]="['/summary']">Siguiente&rarr;</button>
   </div>
 
 </div>
+<!-- <script src="main.js"></script> -->

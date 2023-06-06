@@ -17,8 +17,7 @@ export class MapService {
             console.error('Element with ID "map" not found');
             return;
         }
-        // console.log(latitude, longitude, document)
-        // window.addEventListener('load', () => {
+
         const map = new google.maps.Map(mapElement, {
             center: { lat: latitude, lng: longitude },
             // zoom: 15,

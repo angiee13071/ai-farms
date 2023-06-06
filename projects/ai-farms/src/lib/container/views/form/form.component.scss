@@ -35,3 +35,10 @@
 .forms {
     box-sizing: border-box;
 }
+
+ul {
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+    width: 27rem;
+}

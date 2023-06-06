@@ -46,9 +46,7 @@
       <img loading="lazy" [src]="images[1].src" [alt]="images[1].alt" />
     </div>
   </div>
-  <div [ngStyle]="{
-    'background-color': (_common.device === 'web' && begin) ? 'rgba(91, 46, 122, 0.90)' : 'rgb(255, 255, 255)',
-    'background-image': (_common.device === 'mobile' && begin && !product) ? 'url(' + backgroundMaps + ')' : (_common.device === 'mobile' && product) ? '' : ''
+  <div [ngStyle]="{ 'background-image': (_common.device === 'mobile' && begin && !product) ? 'url(' + backgroundMaps + ')' : (_common.device === 'mobile' && product) ? '' : ''
   }" class="aie-right" style=" background-size: cover; background-position: center; background-repeat: no-repeat;">
     <router-outlet></router-outlet>
   </div>

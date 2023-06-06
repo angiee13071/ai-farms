@@ -1,4 +1,4 @@
-<div *ngIf="_common.device === 'web'">
+<div *ngIf="_common.device === 'web'" class="web">
   <div class="button-get">
     <div> <button class="button-location" (click)="maps()"></button></div>
     <div class="text">Tomar mí ubicación</div>
@@ -6,6 +6,9 @@
 
   <div *ngIf="this.getPlace===false" id="mapDefault"></div>
   <div *ngIf="this.getPlace===true" id="map"></div>
+  <!--   
+  <div [style.display]="getPlace ? 'block' : 'none'" id="mapDefault"></div>
+  <div [style.display]="getPlace ? 'none' : 'block'" id="map"></div> -->
 </div>
 <div class="mobile" *ngIf="_common.device === 'mobile'">
   <div *ngIf="getPlace===false">

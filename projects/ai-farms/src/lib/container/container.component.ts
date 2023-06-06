@@ -113,22 +113,10 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     public _forms: FormsService,
 
   ) {
-    // window.addEventListener("load", (event) => {
-    //   this.isLoading = false;
-    // });
-    // if (this.begin = true) {
-    //   this.viewBegin = true;
-    // }
-
   }
 
   ngOnInit() {
 
-    // this._user.getUser();
-    // this._user.user_firebase.subscribe((userData: any) => {
-    //   this.userData = userData;
-    //   console.log("datausercontainer:", this.userData)
-    // });
 
     this.alterImage(this._router.url)
     this._router.events.pipe(takeUntil(this.$skip)).subscribe((event) => {

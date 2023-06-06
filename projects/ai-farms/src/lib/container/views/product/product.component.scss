@@ -84,6 +84,12 @@ button {
 .list {
     max-height: 25rem;
     box-sizing: border-box;
+
+
+}
+
+#container {
+    height: 500px;
     overflow-y: scroll;
 }
 

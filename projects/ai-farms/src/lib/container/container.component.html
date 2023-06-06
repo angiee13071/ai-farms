@@ -2,11 +2,14 @@
   <div class="aie-left" *ngIf="_common.device === 'web'"
     [ngStyle]="{   'background-image': (_common.device === 'web'&& product||newProduct) ? 'url(' + backgroundProducts + ')' : ''}"
     style=" background-size: cover; background-position: center; background-repeat: no-repeat;">
-    <div *ngIf="begin">
-      <div class="title-container">¡Hola @Caro, AgrodatAi te da la
+    <div *ngIf="begin" class="start">
+      <div class="title-container" *ngIf="showDetails">¡Hola @Caro, AgrodatAi te da la
         bienvenida!</div>
+      <img class="image" [src]="src" loading="lazy" />
+      <button *ngIf="showDetails" class="ai-button-l bg-green-2 mgt-2" (click)="forms()"><a>Agrega tus
+          fincas</a></button>
     </div>
-    <img class="image" [src]="src" loading="lazy" />
+
     <p *ngIf="summary" class="title_summary">Resumen</p>
     <div *ngIf="summary" class="table">
       <table>
@@ -27,7 +30,7 @@
         </tbody>
       </table>
     </div>
-    <div *ngIf="begin">
+    <div *ngIf="begin && showForm">
       <app-form></app-form>
     </div>
     <div *ngIf="product||newProduct">
@@ -39,8 +42,7 @@
     <div class="back" *ngIf="summary">
       <button class="ai-button-back-web" [routerLink]="['/']">&larr; Atrás</button>
     </div>
-
-    <div class="logo">
+    <div class="logo" *ngIf="showDetails">
       <img loading="lazy" [src]="images[1].src" [alt]="images[1].alt" />
     </div>
   </div>

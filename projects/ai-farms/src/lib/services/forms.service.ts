@@ -18,11 +18,11 @@ export class FormsService {
   ) {
 
     this.locationForm = this.fb.group({
-      location: ['', [Validators.required]],
-      name: ['', []],
-      area: [false, [Validators.required]],
-      unit: ['', [Validators.pattern(patterns.referido), Validators.maxLength(8)]],
-      property: [''],
+      location: ['', [Validators.required, Validators.pattern(patterns.only_letters)]],
+      name: ['', [Validators.pattern(patterns.only_letters)]],
+      area: ['', [Validators.required, Validators.pattern(patterns.only_numbers)]],
+      unit: ['', [Validators.required]],
+      property: ['', [Validators.required]],
     });
 
     this.lookForm = this.fb.group({

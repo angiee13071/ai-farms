@@ -15,6 +15,8 @@ import { CreateFarmService } from '../services/createFarm.service'
 export class ContainerComponent implements OnInit, AfterViewInit {
   public userData: any;
   public textCard: string = '';
+  public showForm: boolean = false;
+  public showDetails: boolean = true;
   public size: 's' | 'm' | 'l' = 's';
   public placeName: string | undefined;
   public location: any[] = [{ controlname: 'location', type: 'text', icon: 'map-mark', label: 'Ubicación Finca / Predio ', placeholder: 'Ej: Vereda El Rosal' }]
@@ -150,10 +152,10 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     console.log(this._sharedService.getLocation)
   }
 
-  // forms() {
-  //   this._sharedService.changeForms();
-  //   console.log(this._sharedService.typeLocation)
-  // }
+  forms() {
+    this.showForm = true;
+    this.showDetails = false;
+  }
   private alterImage(path: string) {
     const tmp = this.imageUrlsWeb
       .filter((url: any) => url.paths.includes(`${path}`))

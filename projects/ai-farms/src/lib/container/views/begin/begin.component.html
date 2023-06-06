@@ -24,10 +24,13 @@
 
   <div *ngIf="getPlace===true">
     <div id="map"></div>
-    <div class="aie-card-map"><app-form></app-form> </div>
+    <div class="aie-card-map">
+      <app-form></app-form>
+    </div>
   </div>
   <div *ngIf="_sharedService.getLocation===true">
-    <div class="aie-card-map"> <app-form></app-form>
+    <div class="aie-card-map">
+      <app-form></app-form>
     </div>
   </div>
 </div>

@@ -21,9 +21,23 @@ export class FormComponent implements OnInit {
   searchWord: string = '';
   searchOptions: string[] = [];
 
-  public size: 's' | 'm' | 'l' = 's'; public location: any[] = [{ controlname: 'location', type: 'text', icon: 'map-mark', label: 'Ubicación Finca / Predio ', placeholder: 'Ej: Vereda El Rosal' }]
-  public name: any[] = [{ controlname: 'name', type: 'text', icon: 'farm', label: 'Nombre de la finca (Opcional)', placeholder: 'Ej: Mi terruño' }]
-  public area: any[] = [{ controlname: 'area', type: 'number', label: 'Área', placeholder: 'Ej: 7', radio: "10px 0px 0px 10px" }]
+  public size: 's' | 'm' | 'l' = 's'; public location: any[] = [{
+    controlname: 'location', type: 'text', icon: 'map-mark', label: 'Ubicación Finca / Predio ', placeholder: 'Ej: Vereda El Rosal', errors: {
+      pattern: 'Debe contener letras solamente.',
+      required: 'Completa este campo.',
+    }
+  }]
+  public name: any[] = [{
+    controlname: 'name', type: 'text', icon: 'farm', label: 'Nombre de la finca (Opcional)', placeholder: 'Ej: Mi terruño', errors: {
+      pattern: 'Debe contener letras solamente.',
+    }
+  }]
+  public area: any[] = [{
+    controlname: 'area', type: 'number', label: 'Área', placeholder: 'Ej: 7', radio: "10px 0px 0px 10px", errors: {
+      pattern: 'Debe contener números solamente.',
+      required: 'Completa este campo.',
+    }
+  }]
   public unit: AiNgSelect = {
     controlname: 'unit',
     options: [

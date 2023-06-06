@@ -1,4 +1,4 @@
-import { Component, Inject, NgModule, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedService } from '../../../services/shared.service';
 import { MapService } from '../../../services/map.service';
@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment'
   templateUrl: './begin.component.html',
   styleUrls: ['./begin.component.scss']
 })
-export class BeginComponent implements OnInit {
+export class BeginComponent implements OnInit, AfterViewInit {
 
   public lat: any;
   public long: any;
@@ -42,8 +42,7 @@ export class BeginComponent implements OnInit {
   ) {
 
   }
-  ngOnInit() {
-    // setTimeout(() => {
+  ngAfterViewInit(): void {
     this._map.addMap(4.60971, -74.08175, 'mapDefault');
     // });
     this._user.getUser();
@@ -53,6 +52,10 @@ export class BeginComponent implements OnInit {
       // console.log("enviando datauserbegin", this.userData)
       await Preferences.set({ key: 'ai-firebase', value: this._utils.encrypt(this.userData, environment.INDEXDB.SECRET_KEY) });
     });
+  }
+  ngOnInit() {
+    // setTimeout(() => {
+
 
     // this._sharedService.typeLocationChange.subscribe((getLocation: boolean) => {
 

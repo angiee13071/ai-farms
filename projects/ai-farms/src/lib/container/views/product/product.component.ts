@@ -22,8 +22,8 @@ export class ProductComponent implements OnInit {
   public product: any[] = [{
     radio: "10px 0px 0px 10px",
     controlname: 'product', type: 'text', icon: 'lupa', label: '', placeholder: 'Ej: Maíz', errors: {
-      pattern: 'Sólo letras',
-      required: 'El campo es requerido'
+      pattern: 'El campo debe contener sólo letras.',
+      required: 'El campo es requerido.'
     }
   }]
   constructor(public _forms: FormsService, public _listProducts: ListProductService, private _router: Router,) { }
